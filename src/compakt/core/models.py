@@ -79,9 +79,7 @@ class DocumentStructure(BaseModel):
     children: list[DocumentNode] = Field(default_factory=list)
     """Top-level sections of the document."""
 
-    def get_nodes_at_depth(
-        self, depth: int
-    ) -> list[tuple[list[str], DocumentNode]]:
+    def get_nodes_at_depth(self, depth: int) -> list[tuple[list[str], DocumentNode]]:
         """Collect nodes at a given depth with their ancestor title path.
 
         Args:
@@ -138,9 +136,7 @@ class DocumentStructure(BaseModel):
         tree = self.title + "\n"
         if level > 1:
             for i, child in enumerate(self.children):
-                tree += _build(
-                    child.title, child.children, "", i == len(self.children) - 1, 2
-                )
+                tree += _build(child.title, child.children, "", i == len(self.children) - 1, 2)
         return tree
 
     # --- Backward-compatible convenience methods ---

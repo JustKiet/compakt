@@ -57,12 +57,12 @@ class Container(containers.DeclarativeContainer):
     )
     document_structure_resolver = providers.Singleton(
         OpenAIDocumentStructureResolver,
-        model=config.chat_model.from_value("gpt-4.1-mini"),
+        model=config.chat_model.from_value("gpt-5.4-nano"),
         encoder=encoder,
     )
     summarizer = providers.Singleton(
         OpenAISummarizer,
-        model=config.chat_model.from_value("gpt-4.1-mini"),
+        model=config.chat_model.from_value("gpt-5.4-nano"),
         encoder=encoder,
     )
 

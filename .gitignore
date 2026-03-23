@@ -226,3 +226,4 @@ logs/
 output/
 scripts/
 .vscode/
+azure_functions/

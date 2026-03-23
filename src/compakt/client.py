@@ -3,7 +3,6 @@ from __future__ import annotations
 import asyncio
 import logging
 
-from docling.document_converter import DocumentConverter
 from markdown_it import MarkdownIt
 
 from compakt.core.adapters.in_memory_vector_index import InMemoryVectorIndex
@@ -13,7 +12,6 @@ from compakt.core.adapters.openai_document_structure_resolver import (
 )
 from compakt.core.adapters.openai_embeddings import OpenAIEmbeddings
 from compakt.core.adapters.openai_summarizer import OpenAISummarizer
-from compakt.core.adapters.readers.docling_reader import DoclingFileReader
 from compakt.core.adapters.text_splitters.md_text_splitter import (
     LangchainMarkdownTextSplitter,
 )
@@ -50,16 +48,48 @@ class Compakt:
         chat_model: str = "gpt-4.1-mini",
         embedding_model: str = "text-embedding-3-small",
         encoding_name: str = "cl100k_base",
+        skip_file_reader: bool = False,
     ) -> None:
-        if (
-            file_reader is None
-            or markdown_tree_parser is None
+        needs_defaults = (
+            markdown_tree_parser is None
             or text_splitter is None
             or vector_index is None
             or strategies is None
             or encoder is None
             or brute_force_strategy is None
-        ):
+        )
+
+        if needs_defaults and skip_file_reader:
+            defaults = self.build_defaults_without_reader(
+                chat_model=chat_model,
+                embedding_model=embedding_model,
+                encoding_name=encoding_name,
+                token_limit=brute_force_token_limit,
+            )
+            markdown_tree_parser = defaults[0]
+            text_splitter = defaults[1]
+            vector_index = defaults[2]
+            strategies = defaults[3]
+            encoder = defaults[4]
+            brute_force_strategy = defaults[5]
+        elif needs_defaults or (file_reader is None and not skip_file_reader):
+            (
+                default_file_reader,
+                markdown_tree_parser,
+                text_splitter,
+                vector_index,
+                strategies,
+                encoder,
+                brute_force_strategy,
+            ) = self.build_defaults(
+                chat_model=chat_model,
+                embedding_model=embedding_model,
+                encoding_name=encoding_name,
+                token_limit=brute_force_token_limit,
+            )
+            if file_reader is None:
+                file_reader = default_file_reader
+        else:
             (
                 file_reader,
                 markdown_tree_parser,
@@ -89,13 +119,26 @@ class Compakt:
         markdown_tree = self._markdown_tree_parser.parse(markdown)
         return markdown_tree
 
+    def summarize_text(
+        self, markdown: str, level: int = 2, retrieval_k: int = 20
+    ) -> CompaktRunResult:
+        """Summarize pre-extracted markdown text (skips file reading)."""
+        logger.info("Text summarization started (level=%d, k=%d)", level, retrieval_k)
+        if not markdown.strip():
+            raise EmptyDocumentError("The provided text is empty")
+        return self._summarize_markdown(markdown, level=level, retrieval_k=retrieval_k)
+
     def summarize(self, file_path: str, level: int = 2, retrieval_k: int = 20) -> CompaktRunResult:
         logger.info("Summarization started: %s (level=%d, k=%d)", file_path, level, retrieval_k)
-        try:
-            markdown = self._file_reader.read(file_path)
-            if not markdown.strip():
-                raise EmptyDocumentError("The document is empty after markdown conversion")
+        if not self._file_reader:
+            raise ValueError("File reader is required for summarize() but was not provided")
+        markdown = self._file_reader.read(file_path)
+        if not markdown.strip():
+            raise EmptyDocumentError("The document is empty after markdown conversion")
+        return self._summarize_markdown(markdown, level=level, retrieval_k=retrieval_k)
 
+    def _summarize_markdown(self, markdown: str, level: int, retrieval_k: int) -> CompaktRunResult:
+        try:
             if self.count_tokens(markdown) <= self._brute_force_token_limit:
                 logger.info(
                     "Document is within brute-force token limit, using brute-force strategy"
@@ -159,6 +202,10 @@ class Compakt:
         Encoder,
         BruteForceUnstructuredStrategy,
     ]:
+        from docling.document_converter import DocumentConverter
+
+        from compakt.core.adapters.readers.docling_reader import DoclingFileReader
+
         markdown_it = MarkdownIt()
         document_converter = DocumentConverter()
         file_reader = DoclingFileReader(document_converter=document_converter)
@@ -209,6 +256,68 @@ class Compakt:
             brute_force_strategy,
         )
 
+    @staticmethod
+    def build_defaults_without_reader(
+        chat_model: str = "gpt-4.1-mini",
+        embedding_model: str = "text-embedding-3-small",
+        encoding_name: str = "cl100k_base",
+        token_limit: int = 50_000,
+    ) -> tuple[
+        MarkdownTreeParser,
+        TextSplitter,
+        VectorIndex,
+        list[SummarizationStrategy],
+        Encoder,
+        BruteForceUnstructuredStrategy,
+    ]:
+        """Build default components without the file reader (no docling dependency)."""
+        markdown_it = MarkdownIt()
+        markdown_tree_parser = MarkdownItTreeParser(markdown_it)
+        text_splitter = LangchainMarkdownTextSplitter(
+            headers_to_split_on=[
+                (MarkdownHeader.H1, "header_1"),
+                (MarkdownHeader.H2, "header_2"),
+                (MarkdownHeader.H3, "header_3"),
+                (MarkdownHeader.H4, "header_4"),
+            ]
+        )
+
+        embeddings = OpenAIEmbeddings(model=embedding_model)
+        vector_index = InMemoryVectorIndex(embeddings)
+        encoder = TiktokenEncoder(encoding_name=encoding_name)
+
+        document_structure_resolver = OpenAIDocumentStructureResolver(
+            model=chat_model, encoder=encoder
+        )
+        summarizer = OpenAISummarizer(model=chat_model, encoder=encoder)
+
+        strategies: list[SummarizationStrategy] = [
+            StructuredMarkdownStrategy(
+                document_structure_resolver=document_structure_resolver,
+                summarizer=summarizer,
+                vector_index=vector_index,
+            ),
+            FallbackUnstructuredStrategy(
+                summarizer=summarizer,
+                vector_index=vector_index,
+            ),
+        ]
+
+        brute_force_strategy = BruteForceUnstructuredStrategy(
+            summarizer=summarizer,
+            encoder=encoder,
+            token_limit=token_limit,
+        )
+
+        return (
+            markdown_tree_parser,
+            text_splitter,
+            vector_index,
+            strategies,
+            encoder,
+            brute_force_strategy,
+        )
+
 
 CompaktClient = Compakt
 
@@ -227,16 +336,48 @@ class AsyncCompakt:
         chat_model: str = "gpt-4.1-mini",
         embedding_model: str = "text-embedding-3-small",
         encoding_name: str = "cl100k_base",
+        skip_file_reader: bool = False,
     ) -> None:
-        if (
-            file_reader is None
-            or markdown_tree_parser is None
+        needs_defaults = (
+            markdown_tree_parser is None
             or text_splitter is None
             or vector_index is None
             or strategies is None
             or encoder is None
             or brute_force_strategy is None
-        ):
+        )
+
+        if needs_defaults and skip_file_reader:
+            defaults = Compakt.build_defaults_without_reader(
+                chat_model=chat_model,
+                embedding_model=embedding_model,
+                encoding_name=encoding_name,
+                token_limit=brute_force_token_limit,
+            )
+            markdown_tree_parser = defaults[0]
+            text_splitter = defaults[1]
+            vector_index = defaults[2]
+            strategies = defaults[3]
+            encoder = defaults[4]
+            brute_force_strategy = defaults[5]
+        elif needs_defaults or (file_reader is None and not skip_file_reader):
+            (
+                default_file_reader,
+                markdown_tree_parser,
+                text_splitter,
+                vector_index,
+                strategies,
+                encoder,
+                brute_force_strategy,
+            ) = Compakt.build_defaults(
+                chat_model=chat_model,
+                embedding_model=embedding_model,
+                encoding_name=encoding_name,
+                token_limit=brute_force_token_limit,
+            )
+            if file_reader is None:
+                file_reader = default_file_reader
+        else:
             (
                 file_reader,
                 markdown_tree_parser,
@@ -265,17 +406,33 @@ class AsyncCompakt:
         markdown_tree = self._markdown_tree_parser.parse(markdown)
         return markdown_tree
 
+    async def summarize_text(
+        self, markdown: str, level: int = 2, retrieval_k: int = 20
+    ) -> CompaktRunResult:
+        """Summarize pre-extracted markdown text (skips file reading)."""
+        logger.info("Async text summarization started (level=%d, k=%d)", level, retrieval_k)
+        if not markdown.strip():
+            raise EmptyDocumentError("The provided text is empty")
+        return await self._summarize_markdown(markdown, level=level, retrieval_k=retrieval_k)
+
     async def summarize(
         self, file_path: str, level: int = 2, retrieval_k: int = 20
     ) -> CompaktRunResult:
         logger.info(
             "Async summarization started: %s (level=%d, k=%d)", file_path, level, retrieval_k
         )
-        try:
-            markdown = await asyncio.to_thread(self._file_reader.read, file_path)
+        if not self._file_reader:
+            raise ValueError("File reader is required for summarize() but was not provided")
 
-            if not markdown.strip():
-                raise EmptyDocumentError("The document is empty after markdown conversion")
+        markdown = await asyncio.to_thread(self._file_reader.read, file_path)
+        if not markdown.strip():
+            raise EmptyDocumentError("The document is empty after markdown conversion")
+        return await self._summarize_markdown(markdown, level=level, retrieval_k=retrieval_k)
+
+    async def _summarize_markdown(
+        self, markdown: str, level: int, retrieval_k: int
+    ) -> CompaktRunResult:
+        try:
             if self.count_tokens(markdown) <= self._brute_force_token_limit:
                 logger.info(
                     "Document is within brute-force token limit, using brute-force strategy"
