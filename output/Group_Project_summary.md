@@ -1,0 +1,27 @@
+Title: University of Science and Technology of Hanoi DEPARTMENT OF INFORMATION AND COMMUNICATION TECHNOLOGY Group Project Report
+
+Description:  
+This document is a comprehensive group project report from the University of Science and Technology of Hanoi’s Department of Information and Communication Technology. It covers the research and development of Retrieval-Augmented Generation (RAG) methods, particularly in the legal domain, integrating knowledge graphs to enhance document retrieval and question answering. The report outlines the project’s context, motivation, objectives, related work, methodologies, experimental results, UI demonstration, and conclusions with future directions. This structured document provides a complete view from the initial problem framing to practical system demonstration and evaluation insights.
+
+Sections:
+
+- 1 Introduction  
+- Summary: The Introduction sets the context and background for the project, explaining the motivation behind exploring RAG techniques in the legal domain. It details the specific objectives such as improving legal document retrieval and answering legal questions effectively. This section introduces the challenges faced in legal information retrieval and highlights the potential benefits of integrating knowledge graphs with RAG approaches. It lays a foundation for the subsequent literature review and methodological development.
+
+- 2 Literature Review  
+- Summary: This section reviews existing RAG approaches with a focus on their application in the legal domain. It discusses how current methods retrieve and generate responses from legal texts and highlights limitations in traditional retrieval systems. The review includes studies on knowledge graph integration within RAG frameworks, emphasizing how semantic information can enhance retrieval accuracy and reasoning capabilities. The section concludes by summarizing relevant gaps that the project seeks to address.
+
+- 3 Materials & Methods  
+- Summary: The Methods section describes the dataset collection process comprising legal documents and the construction of a document graph representation to model relationships between entities. It details the development of a QA benchmark dataset tailored for evaluating legal queries. The retrieval pipeline is explained, including the integration of graph-based retrieval techniques into the RAG framework to support more accurate and context-aware document retrieval. This section also introduces the demo UI system designed to visualize graph-integrated retrieval outputs, facilitating practical user interaction.
+
+- 4 Results & Discussion  
+- Summary: This section presents the evaluation metrics used to measure system performance, such as retrieval accuracy and answer quality. Results are discussed in terms of improvements achieved by incorporating knowledge graph-enhanced retrieval compared to baseline methods. The discussion analyzes strengths and limitations observed during experiments, addressing factors influencing system effectiveness in the legal domain. It provides critical insights into the practical implications and potential for refinement.
+
+- 5 UI Visualization  
+- Summary: The UI Visualization section showcases the graphical interface developed to demonstrate the project’s retrieval system functionalities. The interface allows users to input legal queries and view retrieved documents alongside their graph-based relationships. This component exemplifies how visualizing document connections and retrieval pathways supports better understanding and usability in legal information systems.
+
+- 6 Conclusion & Future Work  
+- Summary: The concluding section summarizes the project’s achievements in advancing legal document retrieval through knowledge graph integrated RAG methods. It reflects on the overall findings, acknowledges existing challenges, and outlines directions for future research, such as expanding dataset diversity, enhancing graph representations, and improving interactive system features. This final part emphasizes the potential impact of the work on legal information retrieval and applications.
+
+- References  
+- Summary: Lists scholarly sources, datasets, tools, and prior works cited throughout the report, providing background and supporting evidence for the research.

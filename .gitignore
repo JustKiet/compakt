@@ -219,11 +219,11 @@ __azurite*
 AzuriteConfig
 .claude/
 __*/
-.notebooks/
-data/
-backend/
-logs/
-output/
-scripts/
 .vscode/
-azure_functions/
+# .notebooks/
+# data/
+# backend/
+# logs/
+# output/
+# scripts/
+# azure_functions/

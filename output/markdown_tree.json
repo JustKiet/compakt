@@ -1,0 +1,549 @@
+[
+    {
+        "title": "**AI TRANSFORMATION**",
+        "level": 1,
+        "children": [
+            {
+                "title": "**Business Goals**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Transition from Traditional Engineering to AI Augmented Engineering**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**One pizza team of 3-5 people**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Two pizza team of 8-10 people**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Platform Team Layer**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Guardrails**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Standard Infrastructure**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Compliance as Code**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Full-Stack Builder: From Coder to Orchestrator (New Techvifer NDA)**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**The Typist**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**The OODA Loop**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**The Orchestrator**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Orchestration  \u2022  Direction  \u2022  Judgment**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Skills That Matter Now vs Skills AI Handles**",
+                "level": 2,
+                "children": []
+            }
+        ]
+    },
+    {
+        "title": "**IC Maturity Level**",
+        "level": 1,
+        "children": [
+            {
+                "title": "**Skills Progression Matrix**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Role**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Level 1: AI Assisted (Beginner)**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Level 2: AI Driven (Practitioner)**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Level 3: AI Native (Expert)**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Developer**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Architect**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**QA Engineer**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Company Maturity Level**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Next in 3 \u2013 6 Months**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Security & Compliance**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**AI Threat Landscape**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Governance & Mitigation**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Prompt Injection Attacks**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Prompt Firewall & Input Validation**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**MCP Server Exploitation**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**MCP Zero-Trust Architecture**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Data Poisoning & Model Tampering**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Model Security & Supply Chain Audit**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**AI Supply Chain Vulnerabilities**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**AI Access Control & Data Governance**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Sensitive Data Leakage & Hallucination**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Output Guardrails & Compliance**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Strategic Objectives**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**EXECUTIVE OVERVIEW**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Program Team Structure**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**EXECUTIVE OVERVIEW**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**TC Team**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**All Delivery Units**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**PQA Team**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "Support & Tracking",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Phase**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**TC Team**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**All Delivery Units**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**PQA Team**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Four-Phase Rollout Strategy**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**ROLLOUT STRATEGY**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Launch**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**PHASE 2**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Deepening**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**PHASE 3**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Scale**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**PHASE 4**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Standardize**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Capability-Level**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**ROLLOUT STRATEGY**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**L1: Assisted AI**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**L2: Structured Workflow AI**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**L3: Semi-Agentic**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**L4: Standardized SDLC**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**AI Usage Policy**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**ROLLOUT STRATEGY**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**ALLOWED**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**REQUIRES APPROVAL**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**PROHIBITED**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**KPI Framework**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**KPI FRAMEWORK & ROI**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**A. Cross-Unit Comparison**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**B. Task-Level Time Capture**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**C. Forward-Only Metrics**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**D. Developer Self-Assessment**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**KPI Metrics**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**KPI Metrics**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**List of nominated projects**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**List of AI Champions**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Governance & Operating Model**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**RISK & GOVERNANCE**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**PROGRAM STEERING COMMITTEE**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**WEEKLY STEERING REVIEW (BOD, Head of Depts, DL)**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Communication Plan**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Risk Assessment**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**RISK & GOVERNANCE**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**AI & Delivery Economics**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**BUSINESS & CLIENT IMPACT**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "\"If AI makes engineers faster, do we have less work? Less margin? How do we face clients?\"",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**THE RISK \u2014 IF WE IGNORE THIS**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**THE STRATEGY \u2014 DELIVER MORE, NOT CHEAPER**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**COMMERCIAL MODEL PLAYBOOK**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**How We Protect Margin**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**AI as Competitive Advantage**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**BUSINESS & CLIENT IMPACT**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "How AI-augmented delivery wins new clients and retains existing ones",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**WHAT WE TELL CLIENTS**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**WHY WE WIN**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**EXISTING \u2014 STRATEGIC CLIENTS**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**EXISTING \u2014 CONSERVATIVE CLIENTS**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Faster Delivery**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Higher Predictability**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Better Quality**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**NEW CLIENTS \u2014 SALES WEAPON**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**Cost Efficiency**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**NEW COMMERCIAL MODELS**",
+                "level": 2,
+                "children": []
+            },
+            {
+                "title": "**LONG-TERM BUSINESS IMPACT**",
+                "level": 2,
+                "children": []
+            }
+        ]
+    }
+]

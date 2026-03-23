@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "WORKER_URL": "http://localhost:8001/extract",
+    "BACKEND_WEBHOOK_URL": "http://localhost:8000/webhook/status",
+    "WEBHOOK_SECRET": "dev-secret",
+    "BLOB_ENDPOINT": "http://127.0.0.1:10000",
+    "QUEUE_ENDPOINT": "http://127.0.0.1:10001"
+  }
+}
