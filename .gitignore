@@ -220,10 +220,10 @@ AzuriteConfig
 .claude/
 __*/
 .vscode/
-# .notebooks/
-# data/
-# backend/
-# logs/
-# output/
-# scripts/
-# azure_functions/
+.notebooks/
+data/
+backend/
+logs/
+output/
+scripts/
+azure_functions/
