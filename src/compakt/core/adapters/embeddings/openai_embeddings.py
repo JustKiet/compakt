@@ -1,8 +1,8 @@
-from typing import Any, overload
+from typing import Any, Sequence, overload
 
 from langchain_openai import OpenAIEmbeddings as LangchainOpenAIEmbeddings
 
-from compakt.core.interfaces.embeddings import Embeddings
+from compakt.core.interfaces.embeddings import Embeddings, PayloadType, VectorLike
 
 
 class OpenAIEmbeddings(Embeddings):
@@ -15,12 +15,18 @@ class OpenAIEmbeddings(Embeddings):
         )
 
     @overload
-    def embed(self, payload: str) -> list[float]: ...
+    def embed(
+        self, payload: str, payload_type: PayloadType = PayloadType.DOCUMENT
+    ) -> VectorLike: ...
 
     @overload
-    def embed(self, payload: list[str]) -> list[list[float]]: ...
+    def embed(
+        self, payload: list[str], payload_type: PayloadType = PayloadType.DOCUMENT
+    ) -> Sequence[VectorLike]: ...
 
-    def embed(self, payload: str | list[str]) -> list[float] | list[list[float]]:
+    def embed(
+        self, payload: str | list[str], payload_type: PayloadType = PayloadType.DOCUMENT
+    ) -> VectorLike | Sequence[VectorLike]:
         was_single_payload = isinstance(payload, str)
         request_payload = [payload] if was_single_payload else payload
 
@@ -32,12 +38,18 @@ class OpenAIEmbeddings(Embeddings):
         return response
 
     @overload
-    async def aembed(self, payload: str) -> list[float]: ...
+    async def aembed(
+        self, payload: str, payload_type: PayloadType = PayloadType.DOCUMENT
+    ) -> VectorLike: ...
 
     @overload
-    async def aembed(self, payload: list[str]) -> list[list[float]]: ...
+    async def aembed(
+        self, payload: list[str], payload_type: PayloadType = PayloadType.DOCUMENT
+    ) -> Sequence[VectorLike]: ...
 
-    async def aembed(self, payload: str | list[str]) -> list[float] | list[list[float]]:
+    async def aembed(
+        self, payload: str | list[str], payload_type: PayloadType = PayloadType.DOCUMENT
+    ) -> VectorLike | Sequence[VectorLike]:
         was_single_payload = isinstance(payload, str)
         request_payload = [payload] if was_single_payload else payload
 

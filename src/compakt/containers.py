@@ -3,12 +3,13 @@ from docling.document_converter import DocumentConverter
 from markdown_it import MarkdownIt
 
 from compakt.client import Compakt
+from compakt.core.adapters.embeddings.openai_embeddings import OpenAIEmbeddings
+from compakt.core.adapters.embeddings.voyageai_embeddings import VoyageAIEmbeddings
 from compakt.core.adapters.in_memory_vector_index import InMemoryVectorIndex
 from compakt.core.adapters.md_it_tree_parser import MarkdownItTreeParser
 from compakt.core.adapters.openai_document_structure_resolver import (
     OpenAIDocumentStructureResolver,
 )
-from compakt.core.adapters.openai_embeddings import OpenAIEmbeddings
 from compakt.core.adapters.openai_summarizer import OpenAISummarizer
 from compakt.core.adapters.readers.docling_reader import DoclingFileReader
 from compakt.core.adapters.readers.pymupdf_reader import PyMuPDFMarkdownFileReader
@@ -48,6 +49,10 @@ class Container(containers.DeclarativeContainer):
     embeddings = providers.Singleton(
         OpenAIEmbeddings,
         model=config.embedding_model.from_value("text-embedding-3-small"),
+    )
+    voyageai_embeddings = providers.Singleton(
+        VoyageAIEmbeddings,
+        model=config.embedding_model.from_value("voyage-4"),
     )
     vector_index = providers.Singleton(InMemoryVectorIndex, embeddings=embeddings)
 

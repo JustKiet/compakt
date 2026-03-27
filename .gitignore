@@ -222,6 +222,7 @@ __*/
 .vscode/
 .notebooks/
 data/
+examples/
 backend/
 logs/
 output/

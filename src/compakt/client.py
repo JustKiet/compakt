@@ -5,12 +5,12 @@ import logging
 
 from markdown_it import MarkdownIt
 
+from compakt.core.adapters.embeddings.openai_embeddings import OpenAIEmbeddings
 from compakt.core.adapters.in_memory_vector_index import InMemoryVectorIndex
 from compakt.core.adapters.md_it_tree_parser import MarkdownItTreeParser
 from compakt.core.adapters.openai_document_structure_resolver import (
     OpenAIDocumentStructureResolver,
 )
-from compakt.core.adapters.openai_embeddings import OpenAIEmbeddings
 from compakt.core.adapters.openai_summarizer import OpenAISummarizer
 from compakt.core.adapters.text_splitters.md_text_splitter import (
     LangchainMarkdownTextSplitter,
